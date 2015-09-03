@@ -35,6 +35,6 @@
   },
   "scripts": {
     "start": "gulp dev",
-    "postinstall": "bower install && gulp source"
+    "postinstall": "gulp source"
   }
 }
