@@ -25,7 +25,7 @@ gulp.task('dev', function() {
   .on('start', ['source', 'watch']);
 });
 
-gulp.task('source', ['templates','styles','images','scripts','bower']);
+gulp.task('source', ['templates','styles','images','scripts']);
 
 gulp.task('watch', function() {
   gulp.watch(SRC+'/jade/*.jade', ['templates']);
@@ -72,13 +72,4 @@ gulp.task('scripts', function() {
     .pipe(coffee({bare:true})).on('error', gutil.log)
     .pipe(gulp.dest(DEST+'/js'))
     .pipe(gulpif(dev,lr()));
-});
-
-gulp.task('bower', function() {
-  gulp.src([
-    'bower_components/spin.js/spin.js',
-      'bower_components/three.js/three.min.js',
-    ])
-    .pipe(concat('bower_components.js'))
-    .pipe(gulp.dest(DEST+'/js'));
 });
