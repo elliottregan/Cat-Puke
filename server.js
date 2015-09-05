@@ -18,7 +18,18 @@ var sitePages = [
 var dateFile = __dirname+'/data.json';
 
 function *getDaysPassed() {
-  var recordedDate = yield jsonfile.readFileSync(dateFile);
+  
+  try {
+    var recordedDate = yield jsonfile.readFileSync(dateFile);
+  }
+  catch (e) {
+
+    var obj = {date:moment()}
+    jsonfile.writeFile(dateFile, obj, function(err) {
+      // console.log("error", err)
+    });
+    var recordedDate = yield jsonfile.readFileSync(dateFile);
+  }
   var lastPuke = moment(recordedDate.date);
   var now = moment();
 
