@@ -13,5 +13,5 @@ $(document).ready ->
     type: 'GET'
     success: (data) ->
       $('.days').html(data)
-      if data == "one"
-        $('figcaption').html(day)
+      if data == "one "
+        $('figcaption.small-text').html('day')
