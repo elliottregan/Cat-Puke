@@ -25,15 +25,11 @@ function *getDaysPassed() {
   catch (e) {
 
     var obj = {date:moment()}
-    jsonfile.writeFile(dateFile, obj, function(err) {
-      // console.log("error", err)
-    });
+    jsonfile.writeFileSync(dateFile, obj)
     var recordedDate = yield jsonfile.readFileSync(dateFile);
   }
   var lastPuke = moment(recordedDate.date);
   var now = moment();
-
-  console.log(numToWord(now.diff(lastPuke, 'days')))
 
   this.body = numToWord(now.diff(lastPuke, 'days'))
 }
